@@ -7,6 +7,3 @@ const UserInfo = (props: Props) => {
 };
 
 export default UserInfo;
-
-git config --global user.email "luaanscar@gmail.com"
-git config --global user.name "Luan Araujo"
