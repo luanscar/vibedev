@@ -1,16 +1,19 @@
-import { auth } from "@/services/auth";
-import React from "react";
-import UserInfo from "./_components/user-info";
+import {
+  DashboardPage,
+  DashboardPageHeader,
+  DashboardPageHeaderTitle,
+  DashboardPageMain,
+} from '@/components/dashboard/page'
 
-type Props = {};
-
-const Page = async (props: Props) => {
-  const session = await auth();
+export default async function Page() {
   return (
-    <main className="flex items-center justify-center h-screen">
-      <UserInfo user={session?.user} />
-    </main>
-  );
-};
-
-export default Page;
+    <DashboardPage>
+      <DashboardPageHeader>
+        <DashboardPageHeaderTitle>Tarefas</DashboardPageHeaderTitle>
+      </DashboardPageHeader>
+      <DashboardPageMain>
+        <h1>Tarefas</h1>
+      </DashboardPageMain>
+    </DashboardPage>
+  )
+}

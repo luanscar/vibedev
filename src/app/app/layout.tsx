@@ -1,47 +1,14 @@
-import {
-  Sidebar,
-  SidebarFooter,
-  SidebarHeader,
-  SidebarHeaderTitle,
-  SidebarMain,
-  SidebarNav,
-  SidebarNavHeader,
-  SidebarNavHeaderTitle,
-  SidebarNavLink,
-  SidebarNavMain,
-} from "@/components/dashboard/sidebar";
-import { PropsWithChildren } from "react";
+import { PropsWithChildren } from 'react'
+import { MainSidebar } from './_components/main-sidebar'
+import { auth } from '@/services/auth'
 
 export default async function Layout({ children }: PropsWithChildren) {
+  const session = await auth()
+
   return (
     <div className="grid grid-cols-[16rem_1fr]">
-      <Sidebar>
-        <SidebarHeader>
-          <h1></h1>
-        </SidebarHeader>
-        <SidebarMain className="flex flex-col flex-grow">
-          <SidebarNav>
-            <SidebarNavMain>
-              <SidebarNavLink href="/app">Tarefas</SidebarNavLink>
-              <SidebarNavLink href="/app/settings">
-                Configurações
-              </SidebarNavLink>
-            </SidebarNavMain>
-          </SidebarNav>
-
-          <SidebarNav className="mt-auto">
-            <SidebarNavHeader>
-              <SidebarNavHeaderTitle>Links Extras</SidebarNavHeaderTitle>
-            </SidebarNavHeader>
-            <SidebarNavMain>
-              <SidebarNavLink href="">Precisa de ajuda?</SidebarNavLink>
-              <SidebarNavLink href="/app/settings">Site</SidebarNavLink>
-            </SidebarNavMain>
-          </SidebarNav>
-        </SidebarMain>
-        <SidebarFooter>US</SidebarFooter>
-      </Sidebar>
+      <MainSidebar user={session?.user} />
       <main>{children}</main>
     </div>
-  );
+  )
 }
